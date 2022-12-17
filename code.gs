@@ -25,20 +25,51 @@ function Limit_Responses(){
 }
 
 
-function getSumWeekly(){
-var form = FormApp.openById(getActiveFormId());
-var formResponses = form.getResponses();
-for (var i = 0; i < formResponses.length; i++) {
-  var formResponse = formResponses[i];
-  var itemResponses = formResponse.getItemResponses();
-  for (var j = 0; j < itemResponses.length; j++) {
-    var itemResponse = itemResponses[j];
-    var  a = [];
-    a = a + itemResponse.getResponse();
+
+
+function getSumWeekly() {
+  var sum = 0;
+  var form = FormApp.openById(getActiveFormId());
+  var formResponses = form.getResponses();
+  for (var i = 0; i < formResponses.length; i++) {
+    var formResponse = formResponses[i];
+    var itemResponses = formResponse.getItemResponses();
+    for (var j = 0; j < itemResponses.length; j++) {
+      var itemResponse = itemResponses[j];
+      var a = Number(itemResponse.getResponse());
+      sum = sum + a;
+    }
   }
+  return sum;
 }
-sum = a;
-Logger.log(sum);
+
+function sendWeeklyReport(){
+  var emailAddress = Session.getEffectiveUser().getEmail();
+  var subject = "Weekly Expense Report";
+  var c = getSumWeekly();
+  var sumtostring = c.toString();
+  var mailcontent = "The amount that you spent this week is " + sumtostring + "\n" + "sd";  
+  
+  MailApp.sendEmail(emailAddress, subject, mailcontent);
 }
+
+function getSpreadSheet(){
+  
+  
+}
+
+function getBarChart(){
+
+}
+
+function createTimeDrivenTriggerWeeklyReport() {
+  ScriptApp.newTrigger('sendWeeklyReport')
+    .timeBased()
+    .onWeekDay(ScriptApp.WeekDay.SUNDAY)
+    .atHour(10)
+    .create();
+}
+
+
 
 
