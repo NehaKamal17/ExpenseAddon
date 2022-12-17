@@ -5,14 +5,14 @@ function sendForEmail() {
     var message = "Its time to fill today's budget!!";
     MailApp.sendEmail(emailAddress, subject, message, {
         htmlBody: htmlMessage
-    });
+Â Â Â Â });
 }
 
 function createTimeDrivenTriggers() {
     ScriptApp.newTrigger('sendForEmail')
       .timeBased() 
       .everyMinutes(1)
-      .create();
+  Â Â Â Â .create();
 }
 
 function Limit_Responses(){
