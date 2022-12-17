@@ -24,3 +24,21 @@ function Limit_Responses(){
   Logger.log(len);
 }
 
+
+function getSumWeekly(){
+var form = FormApp.openById(getActiveFormId());
+var formResponses = form.getResponses();
+for (var i = 0; i < formResponses.length; i++) {
+  var formResponse = formResponses[i];
+  var itemResponses = formResponse.getItemResponses();
+  for (var j = 0; j < itemResponses.length; j++) {
+    var itemResponse = itemResponses[j];
+    var  a = [];
+    a = a + itemResponse.getResponse();
+  }
+}
+sum = a;
+Logger.log(sum);
+}
+
+
