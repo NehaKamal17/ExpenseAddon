@@ -7,8 +7,11 @@ to use this add-on, create a google form to fill your daily expenses and it will
 Steps to deploy add-on for the mentioned google form
 
 1.select Script editor from the right menu bar.
+
 2.select the deploy from upper right corner.
+
 3.select new deployments from drop down menu.
+
 4.configure the deployment to the given URL of Web app version and click the deploy button.
 
 
